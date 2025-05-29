@@ -15,25 +15,16 @@ function ContactList() {
 
   console.log("render");
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p className={styles.error}>{error}</p>;
+  if (filteredContacts === null) return null;
+  if (filteredContacts.length === 0) return <p>No contacts found.</p>;
+
   return (
-    <div className={styles.container}>
-      <h2>Contacts</h2>
-
-      {loading && <p>Loading...</p>}
-
-      {!loading && error && <p className={styles.error}>{error}</p>}
-
-      {!loading && !error && filteredContacts.length > 0 && (
-        <div>
-          {filteredContacts.map((c) => (
-            <Contact key={c.id} contact={c} />
-          ))}
-        </div>
-      )}
-
-      {!loading && !error && filteredContacts.length === 0 && (
-        <p className={styles.emptyMessage}>No contacts found.</p>
-      )}
+    <div>
+      {filteredContacts.map((c) => (
+        <Contact key={c.id} contact={c} />
+      ))}
     </div>
   );
 }
