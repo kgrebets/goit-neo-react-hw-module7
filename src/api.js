@@ -9,12 +9,10 @@ export const getContactsAsync = async () => {
 
 export const addContactAsync = async (contact) => {
   const { data } = await axios.post("contacts", contact);
-  console.log("add: ", data);
   return data;
 };
 
 export const deleteContactAsync = async (contactId) => {
   const { data } = await axios.delete(`contacts/${contactId}`);
-  console.log("delete", data);
   return data;
 };
